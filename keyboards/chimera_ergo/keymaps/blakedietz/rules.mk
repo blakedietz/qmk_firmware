@@ -1,0 +1,3 @@
+TAP_DANCE_ENABLE = no
+UNICODE_ENABLE   = no
+KEY_LOCK_ENABLE  = yes # Enable the KC_LOCK key
