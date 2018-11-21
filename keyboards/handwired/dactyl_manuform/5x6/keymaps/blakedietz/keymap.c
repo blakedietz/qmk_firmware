@@ -42,7 +42,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      KC_LSFT, CTL_Z,  ALT_X,  GUI_C,  KC_V,   KC_B ,                          KC_N  , KC_M  , GUI_COMM, ALT_DOT,CTL_SLSH, KC_LSFT,
                       KC_LPRN, KC_RPRN,                                                       KC_LBRC, KC_RBRC,
                                       KC_BSPC,TGL_DEV,                        TGL_MOUSE, KC_TAB,
-                                      TG(_SYMBOL),HPR_LATCH,                       HPR_LATCH,  TG(_SYMBOL),
+                                      TO(_SYMBOL),HPR_LATCH,                       HPR_LATCH,  TO(_SYMBOL),
                                       KC_BSPC, KC_GRV,                        KC_LGUI, KC_LALT
   ),
 
@@ -53,8 +53,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      _______,_______,_______,_______,_______,_______,                           _______,_______,_______,_______,KC_EQL,KC_UNDS,
                                              _______,_______,            _______,_______,
                                              _______,_______,            _______,_______,
-                                             TG(_NUMBER),_______,        _______,TG(_NUMBER),
-                                             TG(_BASE),_______,          _______,TG(_BASE)
+                                             TO(_NUMBER),_______,        _______,TO(_NUMBER),
+                                             TO(_BASE),_______,          _______,TO(_BASE)
   ),
 
   [_DEV] = LAYOUT_5x6(
@@ -98,8 +98,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      _______,_______,_______,_______,_______,_______,                         _______,_______,_______,_______,_______,_______,
                                              _______,_______,            _______,_______,
                                              _______,_______,            _______,_______,
-                                             TG(_GAME),_______,            _______,TG(_GAME),
-                                             TG(_SYMBOL),_______,            _______,TG(_SYMBOL)
+                                             TO(_GAME),_______,            _______,TO(_GAME),
+                                             TO(_SYMBOL),_______,            _______,TO(_SYMBOL)
   ),
 
   [_GAME] = LAYOUT_5x6(
@@ -110,7 +110,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                       KC_LALT, KC_LCTL,                                                       KC_LBRC, KC_RBRC,
                                       KC_BSPC,KC_SPC,                        KC_ENT, _______,
                                       _______,_______,                       _______, _______,
-                                      TG(_NUMBER), _______,                    _______, TG(_NUMBER)
+                                      TO(_NUMBER), _______,                    _______, TO(_NUMBER)
   )
 
   /*[_MOUSE] = LAYOUT_5x6(
