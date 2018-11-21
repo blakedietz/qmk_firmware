@@ -4,53 +4,126 @@
 
 extern keymap_config_t keymap_config;
 
-#define _QWERTY 0
-#define _LOWER 1
-#define _RAISE 2
+#define _BASE 0
+#define _SYMBOL 1
+#define _DEV 2
+#define _MEDIA 3
+#define _MOUSE 4
+#define _GAME 5
+#define _NUMBER 6
 
-#define RAISE MO(_RAISE)
-#define LOWER MO(_LOWER)
+#define ALT_DOT     ALT_T(KC_DOT)
+#define ALT_X       ALT_T(KC_X)
+
+#define CTL_SLSH    CTL_T(KC_SLSH)
+#define CTL_Z       CTL_T(KC_Z)
+
+#define GUI_C       GUI_T(KC_C)
+#define GUI_COMM    GUI_T(KC_COMM)
+
+#define HPR_ESC     ALL_T(KC_ESC)
+#define HPR_QUO     ALL_T(KC_QUOT)
+
+#define HPR_LATCH  ALL_T(KC_NO)
+
+// Toggle to VIM when left space button is held, emit space keycode when left space is tapped
+#define TGL_DEV LT(_DEV, KC_SPC)
+// Toggle to MEDIA layer
+#define TGL_MEDIA LT(_MEDIA, KC_SCLN)
+// Toggle to the mouse layer when the right space button is held and emit enter when right space is tapped
+#define TGL_MOUSE LT(_MOUSE, KC_ENT)
 
 #define _______ KC_TRNS
 
-
-
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
-  [_QWERTY] = LAYOUT_5x6(
+  [_BASE] = LAYOUT_5x6(
      KC_EQL , KC_1  , KC_2  , KC_3  , KC_4  , KC_5  ,                         KC_6  , KC_7  , KC_8  , KC_9  , KC_0  ,KC_MINS,
      KC_TAB , KC_Q  , KC_W  , KC_E  , KC_R  , KC_T  ,                         KC_Y  , KC_U  , KC_I  , KC_O  , KC_P  ,KC_BSLS,
-     ALL_T(KC_ESC), KC_A  , KC_S  , KC_D  , KC_F  , KC_G  ,                         KC_H  , KC_J  , KC_K  , KC_L  ,KC_SCLN,KC_QUOT,
-     KC_LSFT, KC_Z  , KC_X  , KC_C  , KC_V  , KC_B  ,                         KC_N  , KC_M  ,KC_COMM,KC_DOT ,KC_SLSH,KC_BSLASH,
-                      KC_LBRC,KC_RBRC,                                                       KC_LBRC, KC_RBRC,
-                                      KC_BSPC,KC_SPC,                         KC_ENT, KC_TAB,
-                                      KC_TAB,KC_HOME,                         KC_END,  KC_DEL,
+     HPR_ESC, KC_A  , KC_S  , KC_D  , KC_F  , KC_G  ,                         KC_H  , KC_J  , KC_K  , KC_L  , TGL_MEDIA, HPR_QUO,
+     KC_LSFT, CTL_Z,  ALT_X,  GUI_C,  KC_V,   KC_B ,                          KC_N  , KC_M  , GUI_COMM, ALT_DOT,CTL_SLSH, KC_LSFT,
+                      KC_LPRN, KC_RPRN,                                                       KC_LBRC, KC_RBRC,
+                                      KC_BSPC,TGL_DEV,                        TGL_MOUSE, KC_TAB,
+                                      KC_TAB,HPR_LATCH,                       HPR_LATCH,  KC_DEL,
                                       KC_BSPC, KC_GRV,                        KC_LGUI, KC_LALT
   ),
 
-  [_LOWER] = LAYOUT_5x6(
-
-     KC_TILD,KC_EXLM, KC_AT ,KC_HASH,KC_DLR ,KC_PERC,                        KC_CIRC,KC_AMPR,KC_ASTR,KC_LPRN,KC_RPRN,KC_DEL,
-     _______,_______,_______,_______,_______,KC_LBRC,                        KC_RBRC, KC_P7 , KC_P8 , KC_P9 ,_______,KC_PLUS,
-     _______,KC_HOME,KC_PGUP,KC_PGDN,KC_END ,KC_LPRN,                        KC_RPRN, KC_P4 , KC_P5 , KC_P6 ,KC_MINS,KC_PIPE,
-     _______,_______,_______,_______,_______,_______,                        _______, KC_P1 , KC_P2 , KC_P3 ,KC_EQL ,KC_UNDS,
-                                             _______,KC_PSCR,            _______, KC_P0,
+  [_SYMBOL] = LAYOUT_5x6(
+     KC_TILD,KC_EXLM, KC_AT ,KC_HASH,KC_DLR ,KC_PERC,                           KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, KC_DEL,
+     _______,_______,_______,_______,_______,_______,                           KC_RBRC, KC_UNDS, KC_PLUS, KC_LCBR, KC_RCBR, KC_PIPE,
+     _______,_______,_______,_______,_______,_______,                           KC_RPRN, KC_MINS, KC_EQL,  KC_LBRC, KC_RBRC, KC_BSLS,
+     _______,_______,_______,_______,_______,_______,                           _______,_______,_______,_______,KC_EQL,KC_UNDS,
+                                             _______,_______,            _______,_______,
                                              _______,_______,            _______,_______,
                                              _______,_______,            _______,_______,
                                              _______,_______,            _______,_______
-
   ),
 
-  [_RAISE] = LAYOUT_5x6(
-       KC_F12 , KC_F1 , KC_F2 , KC_F3 , KC_F4 , KC_F5 ,                        KC_F6  , KC_F7 , KC_F8 , KC_F9 ,KC_F10 ,KC_F11 ,
-       _______,_______,_______,_______,_______,KC_LBRC,                        KC_RBRC,_______,KC_NLCK,KC_INS ,KC_SLCK,KC_MUTE,
-       _______,KC_LEFT,KC_UP  ,KC_DOWN,KC_RGHT,KC_LPRN,                        KC_RPRN,KC_MPRV,KC_MPLY,KC_MNXT,_______,KC_VOLU,
-       _______,_______,_______,_______,_______,_______,                        _______,_______,_______,_______,_______,KC_VOLD,
-                                               _______,_______,            KC_EQL ,_______,
-                                               _______,_______,            _______,_______,
-                                               _______,_______,            _______,_______,
-                                               _______,_______,            _______,_______
+  [_DEV] = LAYOUT_5x6(
+     _______,_______,_______,_______,_______,_______,                        _______,_______,_______,_______,_______,_______,
+     _______,_______,_______,_______,_______,_______,                        _______,_______,_______,_______,_______,_______,
+     _______,KC_F1,KC_F2,KC_F3,KC_F4,KC_F5,                                  KC_LEFT,KC_DOWN,KC_UP,KC_RIGHT,_______,_______,
+     _______,KC_F6,KC_F7,KC_F8,KC_F9,KC_F10,                                 _______,_______,_______,_______,_______,_______,
+                                             _______,_______,            _______,_______,
+                                             _______,_______,            _______,_______,
+                                             _______,_______,            _______,_______,
+                                             _______,_______,            _______,_______
   ),
+
+  [_MEDIA] = LAYOUT_5x6(
+     _______,_______,_______,_______,_______,_______,                        _______,_______,_______,_______,_______,_______,
+     _______,_______,_______,_______,_______,_______,                        _______,_______,_______,_______,_______,_______,
+     _______,_______,_______,_______,_______,_______,                        _______,KC_MPRV,KC_MNXT,KC_MPLY,_______,_______,
+     _______,_______,_______,_______,_______,_______,                        _______,KC_VOLD,KC_VOLU,KC_MUTE,_______,_______,
+                                             _______,_______,            _______,_______,
+                                             _______,_______,            _______,_______,
+                                             _______,_______,            _______,_______,
+                                             _______,_______,            _______,_______
+  ),
+
+  [_MOUSE] = LAYOUT_5x6(
+     _______,_______,_______,_______,_______,_______,                        _______,_______,_______,_______,_______,_______,
+     _______,_______,_______,KC_MS_U,_______,_______,                        _______,KC_WH_D,KC_WH_U,_______,_______,_______,
+     _______,_______,KC_MS_L,KC_MS_D,KC_MS_R,_______,                        _______,KC_BTN1,KC_BTN2,_______,_______,_______,
+     _______,_______,_______,_______,_______,_______,                        _______,KC_ACL2,KC_ACL1,KC_ACL0,_______,_______,
+                                             _______,_______,            _______,_______,
+                                             _______,_______,            _______,_______,
+                                             _______,_______,            _______,_______,
+                                             _______,_______,            _______,_______
+  ),
+
+  [_GAME] = LAYOUT_5x6(
+     KC_EQL , KC_1  , KC_2  , KC_3  , KC_4  , KC_5  ,                         KC_6  , KC_7  , KC_8  , KC_9  , KC_0  ,KC_MINS,
+     KC_TAB , KC_Q  , KC_W  , KC_E  , KC_R  , KC_T  ,                         KC_Y  , KC_U  , KC_I  , KC_O  , KC_P  ,KC_BSLS,
+     KC_ESC, KC_A  , KC_S  , KC_D  , KC_F  , KC_G  ,                         KC_H  , KC_J  , KC_K  , KC_L  , TGL_MEDIA, KC_QUOT,
+     KC_LSFT, KC_Z,  KC_X,  KC_C,  KC_V,   KC_B ,                          KC_N  , KC_M  , GUI_COMM, ALT_DOT,CTL_SLSH, KC_LSFT,
+                      KC_LALT, KC_LCTL,                                                       KC_LBRC, KC_RBRC,
+                                      KC_BSPC,TGL_DEV,                        TGL_MOUSE, KC_TAB,
+                                      KC_TAB,HPR_LATCH,                       HPR_LATCH,  KC_DEL,
+                                      KC_BSPC, KC_GRV,                        KC_LGUI, KC_LALT
+  )
+
+  [_NUMBER] = LAYOUT_5x6(
+     KC_EQL , KC_1  , KC_2  , KC_3  , KC_4  , KC_5  ,                         KC_6, KC_7, KC_8, KC_9, KC_0  ,KC_MINS,
+     _______,KC_5,KC_6,KC_7,_______,_______,                                  _______,KC_4, KC_5, KC_6, _______,_______,
+     _______,KC_8,KC_9,KC_0,_______,_______,                                  _______,KC_1, KC_2, KC_3, _______,_______,
+     _______,_______,_______,_______,_______,_______,                         _______,_______,_______,_______,_______,_______,
+                                             _______,_______,            _______,_______,
+                                             _______,_______,            _______,_______,
+                                             _______,_______,            _______,_______,
+                                             _______,_______,            _______,_______
+  ),
+
+  /*[_MOUSE] = LAYOUT_5x6(
+     _______,_______,_______,_______,_______,_______,                        _______,_______,_______,_______,_______,_______,
+     _______,_______,_______,_______,_______,_______,                        _______,_______,_______,_______,_______,_______,
+     _______,_______,_______,_______,_______,_______,                        _______,_______,_______,_______,_______,_______,
+     _______,_______,_______,_______,_______,_______,                        _______,_______,_______,_______,_______,_______,
+                                             _______,_______,            _______,_______,
+                                             _______,_______,            _______,_______,
+                                             _______,_______,            _______,_______,
+                                             _______,_______,            _______,_______
+  ),*/
 };
 
 
