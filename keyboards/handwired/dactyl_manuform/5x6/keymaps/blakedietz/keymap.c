@@ -4,11 +4,11 @@ extern keymap_config_t keymap_config;
 
 #define _BASE 0
 #define _SYMBOL 1
-#define _DEV 2
-#define _MEDIA 3
-#define _MOUSE 4
-#define _GAME 5
-#define _NUMBER 6
+#define _NUMBER 2
+#define _GAME 3
+#define _DEV  4
+#define _MEDIA 5
+#define _MOUSE 6
 
 #define ALT_DOT     ALT_T(KC_DOT)
 #define ALT_X       ALT_T(KC_X)
@@ -42,7 +42,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      KC_LSFT, CTL_Z,  ALT_X,  GUI_C,  KC_V,   KC_B ,                          KC_N  , KC_M  , GUI_COMM, ALT_DOT,CTL_SLSH, KC_LSFT,
                       KC_LPRN, KC_RPRN,                                                       KC_LBRC, KC_RBRC,
                                       KC_BSPC,TGL_DEV,                        TGL_MOUSE, KC_TAB,
-                                      TO(_SYMBOL),HPR_LATCH,                       HPR_LATCH,  TO(_SYMBOL),
+                                      TO(_SYMBOL),HPR_LATCH,                  HPR_LATCH,  TO(_SYMBOL),
                                       KC_BSPC, KC_GRV,                        KC_LGUI, KC_LALT
   ),
 
@@ -55,6 +55,28 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                              _______,_______,            _______,_______,
                                              TO(_NUMBER),_______,        _______,TO(_NUMBER),
                                              TO(_BASE),_______,          _______,TO(_BASE)
+  ),
+
+  [_NUMBER] = LAYOUT_5x6(
+     KC_EQL , KC_1  , KC_2  , KC_3  , KC_4  , KC_5  ,                         KC_6, KC_7, KC_8, KC_9, KC_0  ,KC_MINS,
+     _______,KC_5,KC_6,KC_7,_______,_______,                                  _______,KC_4, KC_5, KC_6, _______,_______,
+     _______,KC_8,KC_9,KC_0,_______,_______,                                  _______,KC_1, KC_2, KC_3, _______,_______,
+     _______,_______,_______,_______,_______,_______,                         _______,_______,_______,_______,_______,_______,
+                                             _______,_______,            _______,_______,
+                                             _______,_______,            _______,_______,
+                                             TO(_GAME),_______,            _______,TO(_GAME),
+                                             TO(_SYMBOL),_______,            _______,TO(_SYMBOL)
+  ),
+
+  [_GAME] = LAYOUT_5x6(
+     KC_EQL , KC_1  , KC_2  , KC_3  , KC_4  , KC_5  ,                         KC_6  , KC_7  , KC_8  , KC_9  , KC_0  ,KC_MINS,
+     KC_TAB , KC_Q  , KC_W  , KC_E  , KC_R  , KC_T  ,                         KC_Y  , KC_U  , KC_I  , KC_O  , KC_P  ,KC_BSLS,
+     KC_ESC, KC_A  , KC_S  , KC_D  , KC_F  , KC_G  ,                         KC_H  , KC_J  , KC_K  , KC_L  , TGL_MEDIA, KC_QUOT,
+     KC_LSFT, KC_Z,  KC_X,  KC_C,  KC_V,   KC_B ,                          KC_N  , KC_M  , GUI_COMM, ALT_DOT,CTL_SLSH, KC_LSFT,
+                      KC_LALT, KC_LCTL,                                                       KC_LBRC, KC_RBRC,
+                                      KC_BSPC,KC_SPC,                        KC_ENT, _______,
+                                      _______,_______,                       _______, _______,
+                                      TO(_NUMBER), _______,                    _______, TO(_NUMBER)
   ),
 
   [_DEV] = LAYOUT_5x6(
@@ -88,32 +110,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                              _______,_______,            _______,_______,
                                              _______,_______,            _______,_______,
                                              _______,_______,            _______,_______
-  ),
-
-
-  [_NUMBER] = LAYOUT_5x6(
-     KC_EQL , KC_1  , KC_2  , KC_3  , KC_4  , KC_5  ,                         KC_6, KC_7, KC_8, KC_9, KC_0  ,KC_MINS,
-     _______,KC_5,KC_6,KC_7,_______,_______,                                  _______,KC_4, KC_5, KC_6, _______,_______,
-     _______,KC_8,KC_9,KC_0,_______,_______,                                  _______,KC_1, KC_2, KC_3, _______,_______,
-     _______,_______,_______,_______,_______,_______,                         _______,_______,_______,_______,_______,_______,
-                                             _______,_______,            _______,_______,
-                                             _______,_______,            _______,_______,
-                                             TO(_GAME),_______,            _______,TO(_GAME),
-                                             TO(_SYMBOL),_______,            _______,TO(_SYMBOL)
-  ),
-
-  [_GAME] = LAYOUT_5x6(
-     KC_EQL , KC_1  , KC_2  , KC_3  , KC_4  , KC_5  ,                         KC_6  , KC_7  , KC_8  , KC_9  , KC_0  ,KC_MINS,
-     KC_TAB , KC_Q  , KC_W  , KC_E  , KC_R  , KC_T  ,                         KC_Y  , KC_U  , KC_I  , KC_O  , KC_P  ,KC_BSLS,
-     KC_ESC, KC_A  , KC_S  , KC_D  , KC_F  , KC_G  ,                         KC_H  , KC_J  , KC_K  , KC_L  , TGL_MEDIA, KC_QUOT,
-     KC_LSFT, KC_Z,  KC_X,  KC_C,  KC_V,   KC_B ,                          KC_N  , KC_M  , GUI_COMM, ALT_DOT,CTL_SLSH, KC_LSFT,
-                      KC_LALT, KC_LCTL,                                                       KC_LBRC, KC_RBRC,
-                                      KC_BSPC,KC_SPC,                        KC_ENT, _______,
-                                      _______,_______,                       _______, _______,
-                                      TO(_NUMBER), _______,                    _______, TO(_NUMBER)
   )
+  /*
+  Blank layout for more layers
 
-  /*[_MOUSE] = LAYOUT_5x6(
+  [_NEW_LAYOUT] = LAYOUT_5x6(
      _______,_______,_______,_______,_______,_______,                        _______,_______,_______,_______,_______,_______,
      _______,_______,_______,_______,_______,_______,                        _______,_______,_______,_______,_______,_______,
      _______,_______,_______,_______,_______,_______,                        _______,_______,_______,_______,_______,_______,
