@@ -1,0 +1,25 @@
+{
+  "basePath": "/Users/blakedietz/projects/qmk_firmware/keyboards/",
+  "layouts": {
+    "handwired/dactyl_manuform/5x6/keymaps/blakedietz/keymap.c": {
+          "keyMatrix": [
+            "LLLLLLRRRRRR",
+            "LLLLLLRRRRRR",
+            "LLLLLLRRRRRR",
+            "LLLLLLRRRRRR",
+            "__LL____RR__",
+            "____LLRR____",
+            "____LLRR____",
+            "____LLRR____"
+          ]
+        },
+    "ergotravel/keymaps/blakedietz/keymap.c": {
+          "keyMatrix": [
+            "LLLLLLLRRRRRRR",
+            "LLLLLLLRRRRRRR",
+            "LLLLLLLRRRRRRR",
+            "LLLL_LLRR_RRRR"
+          ]
+        }
+      }
+}
